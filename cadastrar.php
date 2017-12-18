@@ -1,22 +1,5 @@
 <?php 
-public function exec($query, $type, $param){
-        //echo $param['nome'];
-        //echo $param['senha'];
-        //echo $type;
-        //echo $query;
-        $stmt=$this->conn->prepare($query);
-        $stmt->bind_param($type, ...$param);
-        //echo "string";
-        $stmt->execute();
-        if($stmt->field_count>0)
-            $result = $stmt->get_result();
-        else
-            $result=TRUE;
-        if ($this->conn->errno) {
-            die('Invalid query: '.$this->conn->error());
-        }
-        return $result;
-    }
+
     
     if(isset($_GET['email']) and isset($_GET['senha'])){
 
