@@ -1,0 +1,4 @@
+Instruções
+1° Para configurar qual o banco de dados que será usado, e qual a senha e conta de entrada do mysql, é só modificar o arquivo 'info.json'.
+2° O cadastrar usuário não foi implementado. O senhor deve criar um conta diretamente no mysql na tabela usuario. 
+3° Aqui no eu computador o date está pegando três horas a frente. Não sei se vai estar do mesmo jeito no computador do senhor.

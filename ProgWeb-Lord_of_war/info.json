@@ -1,0 +1,12 @@
+[
+	{
+		"info": "db",
+		"db_CONNECTION": "mysql",
+		"db_HOST": "localhost",
+		"db_PORT": 3306,
+		"db_DATABASE": "LordOfWar",
+		"db_USERNAME": "root",
+		"db_PASSWORD": ""
+	}
+]
+
