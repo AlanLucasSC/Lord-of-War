@@ -13,12 +13,14 @@ var_dump($b);
 var_dump(array_pop($b)->id_mensage);
 */
 
+/*
 $a = $consulta->SELECT('*')->FROM('army')->FINALIZE();
 var_dump($a);
 echo strlen($a).' ';
 $a = json_decode($a);
 
 var_dump($a);
+*/
 //echo count($a).' ';
 //echo array_pop($a)->id_mensage;;
 
@@ -34,6 +36,15 @@ var_dump($a);
 
 //Fazer uma exclusão no banco de dados blog, na tabela tipo
 //var_dump($deletar->DELETE('tipo')->WHERE('id')->VALUE(32));
+
+
+//$atualizar->UPDATE('usuario', 'coin')->WHERE('id')->VALUE(100, 1);
+
+var_dump($consulta->SELECT("*")->FROM('sala')->WHERE('id = 1')->FINALIZE());
+
+
+
+
 
 //Criar uma nova Objeto para fazer a consulta
 $cons = new Consultar();

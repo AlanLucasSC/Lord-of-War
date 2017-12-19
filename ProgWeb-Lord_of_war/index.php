@@ -27,6 +27,7 @@
 	<script type="text/javascript">
 		var array = [];
 		var tamanho;
+
 		function mais(a){
 			//console.log(tamanho);
 			qnt = a.value;
@@ -63,10 +64,14 @@
 			if (count > max) {
 				$('#Alerta').removeClass('alert-success').addClass('alert-danger');
 				$('#Alerta').text('Limite da compra excedido!');
+				$('#Criar').removeClass('btn-outline-success').addClass('btn-outline-danger');
+				$('#Cadastrar').removeClass('btn-outline-success').addClass('btn-outline-danger');
 			}
 			else{
 				$('#Alerta').removeClass('alert-danger').addClass('alert-success');
 				$('#Alerta').text('A compra pode ser efetuada!');
+				$('#Criar').removeClass('btn-outline-danger').addClass('btn-outline-success');
+				$('#Cadastrar').removeClass('btn-outline-danger').addClass('btn-outline-success');
 			}
 		}
 		/*
@@ -75,6 +80,38 @@
 		    a.append('i');
 		}, 1000);
 		*/
+
+		function Criar(){
+			max = <?php echo $_SESSION['coin'][0]->coin; ?>;
+			if ($('#Total').text() <= max ) {
+				for (var i = 0; i < tamanho; i++){
+					id = <?php echo $_SESSION['id'][0]->id; ?>;
+					id_per = i + 1;
+					qnt = $('#'+i+'data').val();
+					value = $('#'+i).text();
+					//console.log(id+' '+id_per+' '+qnt);
+					$.post("php/bd.php", {id: id, id_per: id_per, qnt: qnt, value: value}, function(data){});
+				}
+				$.post("php/bd.php", {id_j: id}, function(data){});
+				window.location.replace("./sala_de_espera.php");
+			}
+		}
+
+		function Cadastrar(){
+			max = <?php echo $_SESSION['coin'][0]->coin; ?>;
+			if ($('#Total').text() <= max ) {
+				for (var i = 0; i < tamanho; i++){
+					id = <?php echo $_SESSION['id'][0]->id; ?>;
+					id_per = i + 1;
+					qnt = $('#'+i+'data').val();
+					value = $('#'+i).text();
+					//console.log(id+' '+id_per+' '+qnt);
+					$.post("php/bd.php", {id: id, id_per: id_per, qnt: qnt, value: value}, function(data){});
+				}
+				//$.post("php/bd.php", {id_j: id}, function(data){});
+				window.location.replace("./index.php");
+			}
+		}
 	</script>
 </head>
 <body>
@@ -100,7 +137,7 @@
 		                </li>
 
 		                <li class="nav-item">
-		                  <a class="nav-link" href="#">Salas</a>
+		                  <a class="nav-link" href="sala.php">Salas</a>
 		                </li>
 
 	                	<li class="nav-item">
@@ -161,7 +198,6 @@
         			
         		</tbody>
         	</table>
-
         <?php 
         	}
         ?>

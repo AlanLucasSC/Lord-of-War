@@ -2,22 +2,6 @@
 
 require_once('readJson.php');
 
-public function exec($query, $type, $param){
-       
-        $stmt=$this->conn->prepare($query);
-        $stmt->bind_param($type, ...$param);
-        
-        $stmt->execute();
-        if($stmt->field_count>0)
-            $result = $stmt->get_result();
-        else
-            $result=TRUE;
-        if ($this->conn->errno) {
-            die('Invalid query: '.$this->conn->error());
-        }
-        return $result;
-    }
-
 function select($path){
 	$resultado = SelectMySQL($path);
 	$param = array();

@@ -4,6 +4,19 @@
   if (!isset($_SESSION)) {
     session_start();
   }
+    if (isset($_POST['army'])) {
+      $a = $consulta->SELECT("count(*) as qnt")->FROM('user_army')->WHERE('usuario_id = '.$_SESSION['id'][0]->id)->FINALIZE();
+      echo $a;
+    }
+
+    if (isset($_POST['entrando'])) {
+      $atualizar->UPDATE('sala', 'adversario_id')->WHERE('id')->VALUE($_SESSION['id'][0]->id, $_POST['entrando']);
+    }
+
+    if (isset($_POST['entrou'])) {
+      $a = $consulta->SELECT("sala.adversario_id")->FROM('sala')->WHERE('jogador_id = '.$_SESSION['id'][0]->id)->FINALIZE();
+      echo $a;
+    }
 
   	if(isset($_POST['conta']) and isset($_POST['senha'])) {
   		$login = 'conta = "'.$_POST['conta'].'"';
@@ -23,6 +36,23 @@
       $data = date("Y/m/d H:i:s");
       $insercao->INSERT('mensage', 'text', 'user_id', 'creation_time')->VALUE($_POST['text'], $_SESSION['id'][0]->id, $data);
       echo 'ok';
+    }
+
+    if(isset($_POST['id']) and isset($_POST['id_per']) and isset($_POST['qnt'])) {
+      $insercao->INSERT('user_army', 'usuario_id', 'army_id', 'qnt')->VALUE($_POST['id'], $_POST['id_per'], $_POST['qnt']);
+      $_SESSION['coin'][0]->coin = $_SESSION['coin'][0]->coin - $_POST['value'];
+      $atualizar->UPDATE('usuario', 'coin')->WHERE('id')->VALUE($_SESSION['coin'][0]->coin, $_POST['id']);
+      echo 'ok';
+    }
+
+    if (isset($_POST['id_j'])) {
+      $insercao->INSERT('sala', 'jogador_id')->VALUE($_POST['id_j']);
+      echo "ok";
+    }
+
+    if (isset($_POST['salas'])) {
+      $a = $consulta->SELECT("conta", 'sala.id')->FROM('sala')->COMBINE('INNER', 'usuario', 'sala.jogador_id', 'usuario.id')->WHERE('adversario_id is NULL')->FINALIZE();
+      echo $a;
     }
 
     if (isset($_POST['mensage'])) {

@@ -8,18 +8,18 @@ $(document).ready(function(){
 		$('#Text').val('');	//Retira o valor do campo Text
 	});
 
-	$.post("php/bd.php", {pers: 'ok'}, function(data){
+	$.post("php/bd.php", {pers: 'ok'}, function(data){ 
 		a = $('#pers');
 		data = JSON.parse(data);
 		//console.log(data);
 		tamanho = data.length;
-		a.append('<div class="row row-inline">');
+		//a.append('<div class="row row-inline">');
 		for(i = 0; i < data.length; i++){
 			array[i] = data[i].preco;
 			a.append(
 			`
 				<tr class='table-striped'>
-				<th scope="row">`+i+`</th>
+				<th scope="row" >`+i+`</th>
 				<td>`+data[i].nome+`</td>
 				<td>`+data[i].vida+`</td>
 		    	<td>`+data[i].forca+`</td>
@@ -35,15 +35,33 @@ $(document).ready(function(){
 		a.append(
 			`
 				<tr class='table-striped'>
-					<th scope="row">#</th>
+					<th scope="row"></th>
 					<td> </td>
 					<td> </td>
 			    	<td> </td>
 			    	<td> </td>
 			    	<td> </td>
-			      	<td> <div id='Alerta' class="alert alert-success" role="alert">A compra pode ser efetuada!</div> 
+			      	<td> <div id='Alerta' class="alert alert-success" role="alert" style="min-width: 300px">A compra pode ser efetuada!</div> 
   					</td>
 					<td id="Total" class="is-invalid">0</td>
+				</tr>
+			`
+			);
+		a.append(
+			`
+				<tr class='table-striped'>
+					<th scope="row"></th>
+					<td> </td>
+					<td> </td>
+			    	<td> </td>
+			    	<td> </td>
+			    	<td> </td>
+			      	<td>
+			      		<button id="Cadastrar" onclick="Cadastrar()" type="button" class="btn btn-outline-success">Cadastrar seu exército</button> 
+			      	</td>
+					<td class="is-invalid">
+						<button id="Criar" onclick="Criar()" type="button" class="btn btn-outline-success">Criar sala</button>
+					</td>
 				</tr>
 			`
 			);
