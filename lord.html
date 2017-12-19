@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand logo" href="index.php">Lord of war</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse navbar-right" id="navbarSupportedContent">
+	            <ul class="navbar-nav mr-auto">
+	                <?php  
+	                	if ($login !== 1){
+	                ?>
+		                <li class="nav-item">
+		                  <a class="nav-link" href="login.html">Login</a>
+		                </li>
+	                <?php 
+	                	}
+	                	else{
+	                ?>
+	                	<li class="nav-item">
+		                  <a class="nav-link" href="#">Olá <?php echo $_SESSION['conta']; ?></a>
+		                </li>
+
+		                <li class="nav-item">
+		                  <a class="nav-link" href="sala.php">Salas</a>
+		                </li>
+
+	                	<li class="nav-item">
+	                		<a class="nav-link" href="#">
+	                			<?php echo $_SESSION['coin'][0]->coin; ?>
+	                			<img src="./img/coin.png" class="img-responsive" alt="Cinque Terre" width="20" height="20"> 
+	                		</a>
+		                </li>
+
+		                <li class="nav-item">
+		                  <a class="nav-link" href="./php/sair.php">Sair</a>
+		                </li>
+	                <?php 
+	                	}
+	                ?>
+	  	    	</ul>
+	        </div>
+        </nav>
+	<div class="col-md-4">
+		<div class="panel-group" id="accordion">
+  			<div class="panel panel-default">
+   				 <div class="panel-heading">
+      				<h4 class="panel-title">
+        				<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        				  Guerreiro</a>
+      				</h4>
+    			</div>
+    			<div id="collapse1" class="panel-collapse collapse in">
+      				<div class="panel-body">---------------------------------</div>
+    			</div>
+  			</div>
+  		<div class="panel panel-default">
+    		<div class="panel-heading">
+      			<h4 class="panel-title">
+        			<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Arqueiro</a>
+      			</h4>
+    		</div>
+    		<div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">-----------------------</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        Collapsible Group 3</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">--------------------</div>
+    </div>
+  </div>
+</div>
+	</div>
+
+
+<div class="col-md-4"> </div>
+
+
+
+	<div class="col-md-4">
+		<div class="panel-group" id="accordion2">
+  			<div class="panel panel-default">
+   				 <div class="panel-heading">
+      				<h4 class="panel-title">
+        				<a data-toggle="collapse" data-parent="#accordion2" href="#collapse1_2">
+        				  Guerreiro</a>
+      				</h4>
+    			</div>
+    			<div id="collapse1_2" class="panel-collapse collapse in">
+      				<div class="panel-body">---------------------------------</div>
+    			</div>
+  			</div>
+  		<div class="panel panel-default">
+    		<div class="panel-heading">
+      			<h4 class="panel-title">
+        			<a data-toggle="collapse" data-parent="#accordion2" href="#collapse2_2">Arqueiro</a>
+      			</h4>
+    		</div>
+    		<div id="collapse2_2" class="panel-collapse collapse">
+      <div class="panel-body">-----------------------</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion2" href="#collapse3_2">
+        Collapsible Group 3</a>
+      </h4>
+    </div>
+    <div id="collapse3_2" class="panel-collapse collapse">
+      <div class="panel-body">--------------------</div>
+    </div>
+  </div>
+</div> 
+	</div>
+</body>
