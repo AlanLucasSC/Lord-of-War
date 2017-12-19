@@ -1,20 +1,30 @@
 <?php 
 
 
-    require_once('php/funcoes.php');
-
+  
     
     if(isset($_GET['email']) and isset($_GET['senha'])){
+    $sql = "INSERT INTO usuario(nome,
+                email,
+                nick,
+                senha) VALUES (
+                :nome, 
+                :email, 
+                :nick, 
+                :senha)";
 
-        $param = array();
-        array_push($param, $_GET['email']);
-        array_push($param, $_GET['nick']);
-        array_push($param, $_GET['nome']);
-        array_push($param, $_GET['senha']);
-        $sql="INSERT INTO `usuario` (`email`, `nick`, `nome`, `senha`) VALUES (?, ?, ?, ?);";
-        
-        $result = $objBd->exec($sql, 'ssss', $param);
-        if($result == 1)
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(':nome', $_POST['nome'], PDO::PARAM_STR);       
+    $stmt->bindParam(':filmDescription', $_POST['email'], PDO::PARAM_STR); 
+    $stmt->bindParam(':nick', $_POST['nick'], PDO::PARAM_STR);
+    // use PARAM_STR although a number  
+    $stmt->bindParam(':senha', $_POST['senha'], PDO::PARAM_STR); 
+
+
+    $stmt->execute(); 
+
+        if($stmt == 1)
             {
                 $_SESSION['tipoAlert'] = 'Cadastro feito com sucesso';
                 header("location:../index.php");
