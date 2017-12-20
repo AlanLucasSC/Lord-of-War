@@ -39,10 +39,8 @@ var_dump($a);
 
 
 //$atualizar->UPDATE('usuario', 'coin')->WHERE('id')->VALUE(100, 1);
-
-var_dump($consulta->SELECT("*")->FROM('sala')->WHERE('id = 1')->FINALIZE());
-
-
+echo $atualizar->UPDATE('sala', 'dano', 'pers')->WHERE('jogador_id')->update;
+$atualizar->UPDATE('sala', 'dano', 'pers')->WHERE('jogador_id')->VALUE(11.10, 0, 1);
 
 
 

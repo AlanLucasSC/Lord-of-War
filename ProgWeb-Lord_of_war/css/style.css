@@ -133,3 +133,7 @@ a:hover{
 #errolog {
     display: none;
 }
+
+#successlog{
+    display: none;
+}

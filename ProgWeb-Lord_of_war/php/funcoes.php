@@ -142,7 +142,7 @@ class Atualizar{
 		$this->collumn = $collumn;
 		$this->update =  "UPDATE ".$table." SET ";
 		foreach ($collumn as $key) {
-			$this->update = $this->update.$key.' = :'.$key.' AND';
+			$this->update = $this->update.$key.' = :'.$key.' ,  ';
 			$this->cont++;
 		}
 		$this->update = substr($this->update, 0, -3);

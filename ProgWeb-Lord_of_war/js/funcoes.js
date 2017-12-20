@@ -55,12 +55,14 @@ $(document).ready(function(){
 					<td> </td>
 			    	<td> </td>
 			    	<td> </td>
-			    	<td> </td>
+			    	<td>
+			    		<button id="Cadastrar" onclick="Cadastrar()" type="button" class="btn btn-outline-success">Cadastrar seu exército</button>
+			    	</td>
 			      	<td>
-			      		<button id="Cadastrar" onclick="Cadastrar()" type="button" class="btn btn-outline-success">Cadastrar seu exército</button> 
+			      		<button id="Criar" onclick="CriarCadastrar()" type="button" class="btn btn-outline-success">Criar sala e Cadastrar exército</button>
 			      	</td>
 					<td class="is-invalid">
-						<button id="Criar" onclick="Criar()" type="button" class="btn btn-outline-success">Criar sala</button>
+						<button id="criar" onclick="Criar()" type="button" class="btn btn-outline-success">Criar sala</button>
 					</td>
 				</tr>
 			`

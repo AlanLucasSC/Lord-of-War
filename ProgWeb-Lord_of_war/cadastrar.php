@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Login</title>
+	<title>Cadastrar</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -20,25 +20,19 @@
 				$(".desc").css({'display' : 'none'});
 			});
 			$('#errolog').hide(); //Esconde o elemento com id errolog
-			$('#formlogin').submit(function(){ 	//Ao submeter formulário
+			$('#sucesslog').hide();
+			$('#formcadastro').submit(function(){ 	//Ao submeter formulário
 				var conta=$('#conta').val();	//Pega valor do campo conta
 				var senha=$('#senha').val();	//Pega valor do campo senha
 				console.log(conta);
 				console.log(senha);
-				$.post("php/bd.php", {conta: conta, senha: senha},
-			        function(data){
-			        	console.log(data);
-			        	var dataJson = JSON.parse(data);
-			        	console.log(dataJson.length);
-			        	if (dataJson.length === 0) {
+				$.post("php/bd.php", {new_conta: conta, new_senha: senha}, function(data){
+			        	if (data === 'fail') {
 			        		$('#errolog').show();
 			        	}
 			        	else{
-
-			        		location.href='index.php';
+			        		$('#successlog').show();
 			        	}
-			        	//console.log(dataJson[0].id);
-			         	//$("#resposta").html(data);
 			         }
 			         , "html"); 
 				return false;	//Evita que a página seja atualizada
@@ -77,27 +71,28 @@
 	<div class="panel panel-default margins-1" id="errolog">
 		<div class="panel-heading error">
 			<h3 style="color: white; text-align: center;">
-				ERROR: Houve algum erro ao cadastrar!
+				ERROR: Usuário ou senha errados!
 			</h3>
 		</div>
 	</div>
-	<form class="margins-3" id="formlogin">
+	<div class="panel panel-default margins-1" id="successlog">
+		<div class="panel-heading success">
+			<h3 style="color: white; text-align: center;">
+				SUCCESS: Cadastro feito com sucesso!
+			</h3>
+		</div>
+	</div>
+	<form class="margins-3" id="formcadastro">
 	  <div class="form-group">
-	    <label for="exampleInputEmail1">User</label>
+	    <label for="exampleInputEmail1">User:</label>
 	    <input type="text" class="form-control" id="conta" placeholder="User" name='conta'>
 	    <small id="emailHelp" class="form-text text-muted">We'll never share your user with anyone else.</small>
 	  </div>
 	  <div class="form-group">
-	    <label for="exampleInputPassword1">Password</label>
+	    <label for="exampleInputPassword1">Password:</label>
 	    <input type="password" class="form-control" id="senha" placeholder="Password" name="senha">
 	  </div>
-	  <div class="form-check">
-	    <label class="form-check-label">
-	      <input type="checkbox" class="form-check-input">
-	      Check me out
-	    </label>
-	  </div>
-	  <button type="submit" class="btn btn-primary">Entrar</button>
+	  <button type="submit" class="btn btn-primary">Cadastrar</button>
 	</form>
 
 

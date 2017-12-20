@@ -30,19 +30,21 @@
 			data = JSON.parse(data);
 			qnt = data[0].qnt;
 			console.log(qnt);
-			if (qnt !== 3) {
+			if (qnt < 3) {
 				$('#alerta').removeClass('alert-success').addClass('alert-danger');
 				$('#alerta').text('Precisa ter um exército cadastrado');
 			}
 		});
 
 		function Entrar(element){
-			if (qnt === 3) {
+			console.log(qnt);
+			if (qnt >= 3) {
 				$.post("php/bd.php", {entrando: element.id}, function(data){
 					window.location.replace("./jogo.php");
 				});
 			}
 		}
+		
 		$(document).ready(function(){
 			$.post("php/bd.php", {salas: 'ok'}, function(data){
 				a = $('#pers');
@@ -88,7 +90,7 @@
 		                </li>
 
 		                <li class="nav-item">
-		                  <a class="nav-link" href="#">Salas</a>
+		                  <a class="nav-link" href="sala.php">Salas</a>
 		                </li>
 
 	                	<li class="nav-item">

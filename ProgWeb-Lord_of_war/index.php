@@ -28,6 +28,21 @@
 		var array = [];
 		var tamanho;
 
+		var qnt1;
+		$(document).ready(function(){
+			$.post("php/bd.php", {army: 'qnt'}, function(data){
+				data = JSON.parse(data);
+				qnt1 = data[0].qnt;
+				console.log(qnt1);
+				if (qnt1 >= 3) {
+					$('#alerta').removeClass('alert-success').addClass('alert-danger');
+					$('#alerta').text('Você já tem um exército cadastrado');
+					$('#Criar').removeClass('btn-outline-success').addClass('btn-outline-danger');
+					$('#Cadastrar').removeClass('btn-outline-success').addClass('btn-outline-danger');
+				}
+			});
+		});
+
 		function mais(a){
 			//console.log(tamanho);
 			qnt = a.value;
@@ -81,17 +96,28 @@
 		}, 1000);
 		*/
 
+		function CriarCadastrar(){
+			max = <?php echo $_SESSION['coin'][0]->coin; ?>;
+			id = <?php echo $_SESSION['id'][0]->id; ?>;
+			console.log(qnt1+'  '+$('#Total').text()+' <= '+max);
+			if ($('#Total').text() <= max && qnt1 < 3) {
+				for (var i = 0; i < tamanho; i++){
+					id_per = i + 1;
+					qnt1 = $('#'+i+'data').val();
+					value = $('#'+i).text();
+					//console.log(id+' '+id_per+' '+qnt1);
+					$.post("php/bd.php", {id: id, id_per: id_per, qnt: qnt1, value: value}, function(data){});
+				}
+				$.post("php/bd.php", {id_j: id}, function(data){});
+				window.location.replace("./sala_de_espera.php");
+			}
+		}
+
 		function Criar(){
 			max = <?php echo $_SESSION['coin'][0]->coin; ?>;
-			if ($('#Total').text() <= max ) {
-				for (var i = 0; i < tamanho; i++){
-					id = <?php echo $_SESSION['id'][0]->id; ?>;
-					id_per = i + 1;
-					qnt = $('#'+i+'data').val();
-					value = $('#'+i).text();
-					//console.log(id+' '+id_per+' '+qnt);
-					$.post("php/bd.php", {id: id, id_per: id_per, qnt: qnt, value: value}, function(data){});
-				}
+			id = <?php echo $_SESSION['id'][0]->id; ?>;
+			console.log(qnt1+'  '+$('#Total').text()+' <= '+max);
+			if ($('#Total').text() <= max && qnt1 >= 3) {
 				$.post("php/bd.php", {id_j: id}, function(data){});
 				window.location.replace("./sala_de_espera.php");
 			}
@@ -99,14 +125,15 @@
 
 		function Cadastrar(){
 			max = <?php echo $_SESSION['coin'][0]->coin; ?>;
-			if ($('#Total').text() <= max ) {
+			console.log(qnt1+'  '+$('#Total').text()+' <= '+max);
+			if ($('#Total').text() <= max && qnt1 < 3) {
 				for (var i = 0; i < tamanho; i++){
 					id = <?php echo $_SESSION['id'][0]->id; ?>;
 					id_per = i + 1;
-					qnt = $('#'+i+'data').val();
+					qnt1 = $('#'+i+'data').val();
 					value = $('#'+i).text();
 					//console.log(id+' '+id_per+' '+qnt);
-					$.post("php/bd.php", {id: id, id_per: id_per, qnt: qnt, value: value}, function(data){});
+					$.post("php/bd.php", {id: id, id_per: id_per, qnt: qnt1, value: value}, function(data){});
 				}
 				//$.post("php/bd.php", {id_j: id}, function(data){});
 				window.location.replace("./index.php");
@@ -127,6 +154,9 @@
 	                ?>
 		                <li class="nav-item">
 		                  <a class="nav-link" href="login.html">Login</a>
+		                </li>
+		                <li class="nav-item">
+		                  <a class="nav-link" href="cadastrar.php">Cadastrar</a>
 		                </li>
 	                <?php 
 	                	}
@@ -181,6 +211,13 @@
         	}
         	else{
         ?>
+        	<div class="panel-heading error" style="background-color: #f0efef !important;">
+	            <h2 style=" font-size: 50px; text-align: center;">
+	                <div id="alerta" class="alert alert-success" role="alert">
+					  Cadastre um exército para você jogar.
+					</div>
+	            </h2>
+	        </div>
         	<table class="table" style="background-color: white;">
         		<thead class="thead-dark">
         			<tr>
