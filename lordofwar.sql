@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 19-Dez-2017 às 14:09
+-- Generation Time: 20-Dez-2017 às 12:59
 -- Versão do servidor: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -84,11 +84,21 @@ DROP TABLE IF EXISTS `sala`;
 CREATE TABLE IF NOT EXISTS `sala` (
   `jogador_id` int(11) NOT NULL,
   `adversario_id` int(11) DEFAULT NULL,
+  `turno` int(11) DEFAULT NULL,
+  `dano` int(11) DEFAULT NULL,
+  `pers` int(11) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   KEY `jogador_id` (`jogador_id`),
   KEY `adversario_id` (`adversario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `sala`
+--
+
+INSERT INTO `sala` (`jogador_id`, `adversario_id`, `turno`, `dano`, `pers`, `id`) VALUES
+(1, 5, 1, 4, 2, 54);
 
 -- --------------------------------------------------------
 
@@ -105,16 +115,28 @@ CREATE TABLE IF NOT EXISTS `user_army` (
   PRIMARY KEY (`id`),
   KEY `army_id` (`army_id`),
   KEY `usuario_id` (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `user_army`
 --
 
 INSERT INTO `user_army` (`usuario_id`, `army_id`, `qnt`, `id`) VALUES
+(8, 3, 0, 30),
+(8, 1, 5, 29),
+(8, 2, 3, 28),
 (3, 2, 0, 24),
 (3, 3, 0, 23),
-(3, 1, 2, 22);
+(3, 1, 2, 22),
+(4, 1, 4, 32),
+(4, 2, 3, 31),
+(4, 3, 0, 33),
+(5, 1, 2, 34),
+(5, 2, 2, 35),
+(5, 3, 2, 36),
+(1, 3, 6, 54),
+(1, 2, 7, 53),
+(1, 1, 4, 52);
 
 -- --------------------------------------------------------
 
@@ -129,16 +151,20 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `senha` varchar(25) NOT NULL,
   `coin` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `conta`, `senha`, `coin`) VALUES
-(1, 'AlanLucasSC', '96654117and', 680),
+(1, 'AlanLucasSC', '96654117and', 445),
 (2, 'Batata', '123', 50),
-(3, 'Teste', '123', 0);
+(3, 'Teste', '123', 0),
+(4, 'Alan', '123', 15),
+(5, 'OI', '123', 20),
+(6, 'Ba', '123', 100),
+(8, 'ola', 'ola', 5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
