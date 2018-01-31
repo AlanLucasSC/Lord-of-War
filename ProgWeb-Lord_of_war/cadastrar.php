@@ -71,7 +71,7 @@
 	<div class="panel panel-default margins-1" id="errolog">
 		<div class="panel-heading error">
 			<h3 style="color: white; text-align: center;">
-				ERROR: Usuário ou senha errados!
+				ERROR: Usuário ou senha errados!!!!
 			</h3>
 		</div>
 	</div>
